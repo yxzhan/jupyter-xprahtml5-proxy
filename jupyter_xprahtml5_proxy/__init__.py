@@ -112,14 +112,16 @@ def setup_xprahtml5():
         '--html=on',
         '--bind-tcp=0.0.0.0:{port}',
         # '--socket-dir="' + socket_path + '/"',  # fixme: socket_dir not recognized
-        # '--server-idle-timeout=86400',  # stop server after 24h with no client connection
-        # '--exit-with-client=yes',  # stop Xpra when the browser disconnects
-        '--start=xterm -fa "DejaVu Sans Mono" -fs 14',
-        # '--start-child=xterm', '--exit-with-children',
+        '--server-idle-timeout=86400',  # stop server after 24h with no client connection
+        '--exit-with-client=yes',  # stop Xpra when the browser disconnects
+        # '--start=gnome-terminal',
+        # '--start-child=xterm',
+        # '--exit-with-children',
         '--tcp-auth=file:filename=' + fpath_passwd,
         '--tcp-encryption=AES',
         '--tcp-encryption-keyfile=' + fpath_aeskey,
         '--clipboard-direction=both',
+        # '--xvfb=\"Xvfb +extension GLX +extension Composite -screen 0 600x800x24+32 -nolisten tcp -noreset -auth $XAUTHORITY -dpi 96\"',
         '--no-keyboard-sync',  # prevent keys from repeating unexpectedly on high latency
         '--no-mdns',  # do not advertise the xpra session on the local network
         '--no-bell',
@@ -131,6 +133,7 @@ def setup_xprahtml5():
         # '--dpi=96',  # only needed if Xserver does not support dynamic dpi change
         '--sharing',  # this allows to open the desktop in multiple browsers at the same time
         '--no-daemon',  # mandatory
+        ':100'
     ]
     logger.info('Xpra command: ' + ' '.join(cmd))
 
@@ -142,7 +145,7 @@ def setup_xprahtml5():
         'mappath': _xprahtml5_mappath,
         'absolute_url': False,
         'timeout': 90,
-        'new_browser_tab': True,
+        'new_browser_tab': False,
         'launcher_entry': {
             'enabled': True,
             'icon_path': os.path.join(HERE, 'icons/xpra-logo.svg'),
