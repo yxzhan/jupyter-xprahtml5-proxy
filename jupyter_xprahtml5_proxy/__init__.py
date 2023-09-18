@@ -103,7 +103,7 @@ def setup_xprahtml5():
         raise FileNotFoundError("Encryption key generation in temp file FAILED")
 
     # launchers url file including url parameters
-    path_info = 'xprahtml5/index.html' + _xprahtml5_urlparams()
+    path_info = 'xprahtml5/index.html'
 
     # create command
     cmd = [
@@ -111,28 +111,12 @@ def setup_xprahtml5():
         'start',
         '--html=on',
         '--bind-tcp=0.0.0.0:{port}',
-        # '--socket-dir="' + socket_path + '/"',  # fixme: socket_dir not recognized
-        '--server-idle-timeout=86400',  # stop server after 24h with no client connection
-        '--exit-with-client=yes',  # stop Xpra when the browser disconnects
-        # '--start=gnome-terminal',
-        # '--start-child=xterm',
-        # '--exit-with-children',
-        '--tcp-auth=file:filename=' + fpath_passwd,
-        '--tcp-encryption=AES',
-        '--tcp-encryption-keyfile=' + fpath_aeskey,
-        '--clipboard-direction=both',
-        # '--xvfb=\"Xvfb +extension GLX +extension Composite -screen 0 600x800x24+32 -nolisten tcp -noreset -auth $XAUTHORITY -dpi 96\"',
-        '--no-keyboard-sync',  # prevent keys from repeating unexpectedly on high latency
-        '--no-mdns',  # do not advertise the xpra session on the local network
-        '--no-bell',
-        '--no-speaker',
-        '--no-printing',
-        '--no-microphone',
-        '--no-notifications',
-        '--no-systemd-run',  # do not delegated start-cmd to the system wide proxy server instance
-        # '--dpi=96',  # only needed if Xserver does not support dynamic dpi change
-        '--sharing',  # this allows to open the desktop in multiple browsers at the same time
-        '--no-daemon',  # mandatory
+        '--start=gnome-terminal',
+        '--pulseaudio=no',
+        '--notifications=no',
+        '--bell=no',
+        '--daemon=no',
+        '--exit-with-children=no',
         ':100'
     ]
     logger.info('Xpra command: ' + ' '.join(cmd))
