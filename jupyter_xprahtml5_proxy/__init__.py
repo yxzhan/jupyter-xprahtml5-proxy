@@ -111,7 +111,6 @@ def setup_xprahtml5():
         'start',
         '--html=on',
         '--bind-tcp=0.0.0.0:{port}',
-        '--start=gnome-terminal',
         '--pulseaudio=no',
         '--notifications=no',
         '--bell=no',
@@ -131,7 +130,7 @@ def setup_xprahtml5():
         'timeout': 90,
         'new_browser_tab': False,
         'launcher_entry': {
-            'enabled': True,
+            'enabled': False,
             'icon_path': os.path.join(HERE, 'icons/xpra-logo.svg'),
             'title': 'Xpra Desktop',
             'path_info': path_info,
