@@ -130,7 +130,7 @@ def setup_xprahtml5():
         'timeout': 90,
         'new_browser_tab': False,
         'launcher_entry': {
-            'enabled': False,
+            'enabled': True,
             'icon_path': os.path.join(HERE, 'icons/xpra-logo.svg'),
             'title': 'Xpra Desktop',
             'path_info': path_info,
